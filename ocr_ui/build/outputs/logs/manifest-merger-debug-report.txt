@@ -1,0 +1,43 @@
+-- Merging decision tree log ---
+manifest
+ADDED from E:\work\OCRApplication\ocr_ui\src\main\AndroidManifest.xml:4:1-12:12
+INJECTED from E:\work\OCRApplication\ocr_ui\src\main\AndroidManifest.xml:4:1-12:12
+INJECTED from E:\work\OCRApplication\ocr_ui\src\main\AndroidManifest.xml:4:1-12:12
+INJECTED from E:\work\OCRApplication\ocr_ui\src\main\AndroidManifest.xml:4:1-12:12
+INJECTED from E:\work\OCRApplication\ocr_ui\src\main\AndroidManifest.xml:4:1-12:12
+INJECTED from E:\work\OCRApplication\ocr_ui\src\main\AndroidManifest.xml:4:1-12:12
+INJECTED from E:\work\OCRApplication\ocr_ui\src\main\AndroidManifest.xml:4:1-12:12
+	package
+		ADDED from E:\work\OCRApplication\ocr_ui\src\main\AndroidManifest.xml:5:11-37
+		INJECTED from E:\work\OCRApplication\ocr_ui\src\main\AndroidManifest.xml
+		INJECTED from E:\work\OCRApplication\ocr_ui\src\main\AndroidManifest.xml
+	android:versionName
+		INJECTED from E:\work\OCRApplication\ocr_ui\src\main\AndroidManifest.xml
+		ADDED from E:\work\OCRApplication\ocr_ui\src\main\AndroidManifest.xml:4:1-12:12
+		INJECTED from E:\work\OCRApplication\ocr_ui\src\main\AndroidManifest.xml
+	android:versionCode
+		INJECTED from E:\work\OCRApplication\ocr_ui\src\main\AndroidManifest.xml
+		ADDED from E:\work\OCRApplication\ocr_ui\src\main\AndroidManifest.xml:4:1-12:12
+		INJECTED from E:\work\OCRApplication\ocr_ui\src\main\AndroidManifest.xml
+	xmlns:android
+		ADDED from E:\work\OCRApplication\ocr_ui\src\main\AndroidManifest.xml:4:11-69
+application
+ADDED from E:\work\OCRApplication\ocr_ui\src\main\AndroidManifest.xml:7:1-10:15
+activity#com.baidu.ocr.ui.camera.CameraActivity
+ADDED from E:\work\OCRApplication\ocr_ui\src\main\AndroidManifest.xml:9:5-70
+	android:name
+		ADDED from E:\work\OCRApplication\ocr_ui\src\main\AndroidManifest.xml:9:15-68
+uses-sdk
+INJECTED from E:\work\OCRApplication\ocr_ui\src\main\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from E:\work\OCRApplication\ocr_ui\src\main\AndroidManifest.xml
+INJECTED from E:\work\OCRApplication\ocr_ui\src\main\AndroidManifest.xml
+INJECTED from E:\work\OCRApplication\ocr_ui\src\main\AndroidManifest.xml
+INJECTED from E:\work\OCRApplication\ocr_ui\src\main\AndroidManifest.xml
+	android:targetSdkVersion
+		INJECTED from E:\work\OCRApplication\ocr_ui\src\main\AndroidManifest.xml
+		ADDED from E:\work\OCRApplication\ocr_ui\src\main\AndroidManifest.xml
+		INJECTED from E:\work\OCRApplication\ocr_ui\src\main\AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from E:\work\OCRApplication\ocr_ui\src\main\AndroidManifest.xml
+		ADDED from E:\work\OCRApplication\ocr_ui\src\main\AndroidManifest.xml
+		INJECTED from E:\work\OCRApplication\ocr_ui\src\main\AndroidManifest.xml
