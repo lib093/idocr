@@ -19,7 +19,10 @@
 
 1.调用前进行初始化
 ------------------------
- OCR.getInstance(Utils.getContext()).initAccessToken(new OnResultListener<AccessToken>() {
+        /**
+         * 自定义license的文件路径和文件名称，以license文件方式初始化
+         */
+            OCR.getInstance(Utils.getContext()).initAccessToken(new OnResultListener<AccessToken>() {
                 @Override
                 public void onResult(AccessToken accessToken) {
                     String token = accessToken.getAccessToken();
@@ -56,6 +59,8 @@
                     Log.d("lib","自定义文件路径licence方式获取token失败"+ error.getMessage());
                 }
             }, "aip.license", getApplication());
+        }
+
 	    
 	    
 
