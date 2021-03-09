@@ -12,8 +12,11 @@
   dependencies {
 	        implementation 'com.github.lib093:idocr:1.0.0'
 	}
+	
+	
 百度云平台地址：https://console.bce.baidu.com/
 下载license 放入assets文件夹中
+
 1.调用前进行初始化	.
  OCR.getInstance(Utils.getContext()).initAccessToken(new OnResultListener<AccessToken>() {
                 @Override
@@ -52,6 +55,8 @@
                     Log.d("lib","自定义文件路径licence方式获取token失败"+ error.getMessage());
                 }
             }, "aip.license", getApplication());
+	    
+	    
 
 2.调用页面
 Intent intent = new Intent(LoginActivity.this, CameraActivity.class);
