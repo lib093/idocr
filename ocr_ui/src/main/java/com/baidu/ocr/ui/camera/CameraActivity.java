@@ -425,10 +425,7 @@ public class CameraActivity extends Activity {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                Intent intent = new Intent();
-                intent.putExtra(CameraActivity.KEY_CONTENT_TYPE, contentType);
-                setResult(Activity.RESULT_OK, intent);
-                finish();
+                recIDCard(IDCardParams.ID_CARD_SIDE_FRONT,outputPath);
             }
         });
     }
