@@ -87,6 +87,8 @@ Intent intent = new Intent(LoginActivity.this, CameraActivity.class);
             }
         }
     }
+    
+    
 4.注销释放	
 5. @Override
     public void onDestroy() {
