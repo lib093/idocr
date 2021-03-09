@@ -56,12 +56,12 @@ public class MainActivity extends AppCompatActivity {
                 intent.putExtra(CameraActivity.KEY_OUTPUT_FILE_PATH,
                         new File(MainActivity.this.getFilesDir(), "pic.jpg").getAbsolutePath());
                 intent.putExtra(CameraActivity.KEY_NATIVE_ENABLE,
-                        true);
+                        false);
                 // KEY_NATIVE_MANUAL设置了之后CameraActivity中不再自动初始化和释放模型
                 // 请手动使用CameraNativeHelper初始化和释放模型
                 // 推荐这样做，可以避免一些activity切换导致的不必要的异常
                 intent.putExtra(CameraActivity.KEY_NATIVE_MANUAL,
-                        true);
+                        false);
                 intent.putExtra(CameraActivity.KEY_CONTENT_TYPE, CameraActivity.CONTENT_TYPE_ID_CARD_FRONT);
                 startActivityForResult(intent, 100);
             }
