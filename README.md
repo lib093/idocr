@@ -54,7 +54,7 @@
             }, "aip.license", getApplication());
 
 2.调用页面
- Intent intent = new Intent(LoginActivity.this, CameraActivity.class);
+Intent intent = new Intent(LoginActivity.this, CameraActivity.class);
                 intent.putExtra(CameraActivity.KEY_OUTPUT_FILE_PATH,
                         new File(LoginActivity.this.getFilesDir(), "pic.jpg").getAbsolutePath());
                 intent.putExtra(CameraActivity.KEY_NATIVE_ENABLE,
@@ -67,10 +67,10 @@
                 intent.putExtra(CameraActivity.KEY_CONTENT_TYPE, CameraActivity.CONTENT_TYPE_ID_CARD_FRONT);
                 startActivityForResult(intent, 100);
 3.获取结果
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 100 && resultCode == Activity.RESULT_OK) {
+4.@Override
+   protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+	super.onActivityResult(requestCode, resultCode, data);
+       	if (requestCode == 100 && resultCode == Activity.RESULT_OK) {
             if (data != null) {
                 String contentType = data.getStringExtra(CameraActivity.KEY_CONTENT_TYPE);
                 if (!TextUtils.isEmpty(contentType)) {
