@@ -17,7 +17,8 @@
 百度云平台地址：https://console.bce.baidu.com/
 下载license 放入assets文件夹中
 
-1.调用前进行初始化	.
+1.调用前进行初始化
+------------------------
  OCR.getInstance(Utils.getContext()).initAccessToken(new OnResultListener<AccessToken>() {
                 @Override
                 public void onResult(AccessToken accessToken) {
@@ -59,7 +60,8 @@
 	    
 
 2.调用页面
-Intent intent = new Intent(LoginActivity.this, CameraActivity.class);
+-------------
+                Intent intent = new Intent(LoginActivity.this, CameraActivity.class);
                 intent.putExtra(CameraActivity.KEY_OUTPUT_FILE_PATH,
                         new File(LoginActivity.this.getFilesDir(), "pic.jpg").getAbsolutePath());
                 intent.putExtra(CameraActivity.KEY_NATIVE_ENABLE,
@@ -72,10 +74,12 @@ Intent intent = new Intent(LoginActivity.this, CameraActivity.class);
                 intent.putExtra(CameraActivity.KEY_CONTENT_TYPE, CameraActivity.CONTENT_TYPE_ID_CARD_FRONT);
                 startActivityForResult(intent, 100);
 3.获取结果
-4.@Override
-   protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-	super.onActivityResult(requestCode, resultCode, data);
-       	if (requestCode == 100 && resultCode == Activity.RESULT_OK) {
+---------------
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 100 && resultCode == Activity.RESULT_OK) {
             if (data != null) {
                 String contentType = data.getStringExtra(CameraActivity.KEY_CONTENT_TYPE);
                 if (!TextUtils.isEmpty(contentType)) {
@@ -87,14 +91,13 @@ Intent intent = new Intent(LoginActivity.this, CameraActivity.class);
             }
         }
     }
-    
-    
-4.注销释放	
-5. @Override
+4.注销释放
+-----------
+    @Override
     public void onDestroy() {
         // 释放本地质量控制模型
         CameraNativeHelper.release();
         super.onDestroy();
         // 释放内存资源
         OCR.getInstance(this).release();
-    }	
+    }
