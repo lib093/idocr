@@ -25,6 +25,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.io.File;
 
+import static com.baidu.ocr.ui.camera.CameraActivity.CONTENT_TYPE_ID_CARD_BACK;
+import static com.baidu.ocr.ui.camera.CameraActivity.CONTENT_TYPE_ID_CARD_FRONT;
+
 public class MainActivity extends AppCompatActivity {
 
 
@@ -56,13 +59,14 @@ public class MainActivity extends AppCompatActivity {
                 intent.putExtra(CameraActivity.KEY_OUTPUT_FILE_PATH,
                         new File(MainActivity.this.getFilesDir(), "pic.jpg").getAbsolutePath());
                 intent.putExtra(CameraActivity.KEY_NATIVE_ENABLE,
-                        false);
+                        true);
                 // KEY_NATIVE_MANUAL设置了之后CameraActivity中不再自动初始化和释放模型
                 // 请手动使用CameraNativeHelper初始化和释放模型
                 // 推荐这样做，可以避免一些activity切换导致的不必要的异常
                 intent.putExtra(CameraActivity.KEY_NATIVE_MANUAL,
-                        false);
-                intent.putExtra(CameraActivity.KEY_CONTENT_TYPE, CameraActivity.CONTENT_TYPE_ID_CARD_FRONT);
+                        true);
+                intent.putExtra(CameraActivity.KEY_CONTENT_TYPE,
+                        CONTENT_TYPE_ID_CARD_BACK);//正面：CONTENT_TYPE_ID_CARD_FRONT   背面 ：CONTENT_TYPE_ID_CARD_BACK  默认正面
                 startActivityForResult(intent, 100);
             }
         });
@@ -160,9 +164,10 @@ public class MainActivity extends AppCompatActivity {
             if (data != null) {
                 String contentType = data.getStringExtra(CameraActivity.KEY_CONTENT_TYPE);
                 if (!TextUtils.isEmpty(contentType)) {
-                    if (CameraActivity.CONTENT_TYPE_ID_CARD_FRONT.equals(contentType)) {
-                        Toast.makeText(MainActivity.this,data.getStringExtra("result"),Toast.LENGTH_LONG).show();
-                    } else if (CameraActivity.CONTENT_TYPE_ID_CARD_BACK.equals(contentType)) {
+                    if (CONTENT_TYPE_ID_CARD_FRONT.equals(contentType)) {
+                        String res = data.getStringExtra("address")+ data.getStringExtra("idNumber")+data.getStringExtra("birthday")+data.getStringExtra("gender")+data.getStringExtra("ethnic")+data.getStringExtra("name");
+                        Toast.makeText(MainActivity.this,res,Toast.LENGTH_LONG).show();
+                    } else if (CONTENT_TYPE_ID_CARD_BACK.equals(contentType)) {
                     }
                 }
             }

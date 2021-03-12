@@ -162,17 +162,11 @@ public class CameraActivity extends Activity {
 
         contentType = getIntent().getStringExtra(KEY_CONTENT_TYPE);
         if (contentType == null) {
-            contentType = CONTENT_TYPE_GENERAL;
+            contentType = CONTENT_TYPE_ID_CARD_FRONT;
         }
         int maskType;
         switch (contentType) {
-            case CONTENT_TYPE_ID_CARD_FRONT:
-                maskType = MaskView.MASK_TYPE_ID_CARD_FRONT;
-                overlayView.setVisibility(View.INVISIBLE);
-                if (isNativeEnable) {
-                    takePhotoBtn.setVisibility(View.INVISIBLE);
-                }
-                break;
+
             case CONTENT_TYPE_ID_CARD_BACK:
                 maskType = MaskView.MASK_TYPE_ID_CARD_BACK;
                 overlayView.setVisibility(View.INVISIBLE);
@@ -180,19 +174,27 @@ public class CameraActivity extends Activity {
                     takePhotoBtn.setVisibility(View.INVISIBLE);
                 }
                 break;
-            case CONTENT_TYPE_BANK_CARD:
-                maskType = MaskView.MASK_TYPE_BANK_CARD;
-                overlayView.setVisibility(View.INVISIBLE);
-                break;
-            case CONTENT_TYPE_PASSPORT:
-                maskType = MaskView.MASK_TYPE_PASSPORT;
-                overlayView.setVisibility(View.INVISIBLE);
-                break;
-            case CONTENT_TYPE_GENERAL:
             default:
-                maskType = MaskView.MASK_TYPE_NONE;
-                cropMaskView.setVisibility(View.INVISIBLE);
+            case CONTENT_TYPE_ID_CARD_FRONT:
+                maskType = MaskView.MASK_TYPE_ID_CARD_FRONT;
+                overlayView.setVisibility(View.INVISIBLE);
+                if (isNativeEnable) {
+                    takePhotoBtn.setVisibility(View.INVISIBLE);
+                }
                 break;
+//            case CONTENT_TYPE_BANK_CARD:
+//                maskType = MaskView.MASK_TYPE_BANK_CARD;
+//                overlayView.setVisibility(View.INVISIBLE);
+//                break;
+//            case CONTENT_TYPE_PASSPORT:
+//                maskType = MaskView.MASK_TYPE_PASSPORT;
+//                overlayView.setVisibility(View.INVISIBLE);
+//                break;
+//            case CONTENT_TYPE_GENERAL:
+//            default:
+//                maskType = MaskView.MASK_TYPE_NONE;
+//                cropMaskView.setVisibility(View.INVISIBLE);
+//                break;
         }
 
         // 身份证本地能力初始化
@@ -302,17 +304,17 @@ public class CameraActivity extends Activity {
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                    recIDCard(IDCardParams.ID_CARD_SIDE_FRONT,outputPath);
+                    recIDCard(outputPath);
 
                 }
             });
         }
     };
-    private void recIDCard(String idCardSide, String filePath) {
+    private void recIDCard( String filePath) {
         IDCardParams param = new IDCardParams();
         param.setImageFile(new File(filePath));
         // 设置身份证正反面
-        param.setIdCardSide(idCardSide);
+        param.setIdCardSide(contentType == CONTENT_TYPE_ID_CARD_FRONT? IDCardParams.ID_CARD_SIDE_FRONT:IDCardParams.ID_CARD_SIDE_BACK);
         // 设置方向检测
         param.setDetectDirection(true);
         // 设置图像参数压缩质量0-100, 越大图像质量越好但是请求时间越长。 不设置则默认值为20
@@ -323,13 +325,19 @@ public class CameraActivity extends Activity {
             public void onResult(IDCardResult result) {
                 if (result != null) {
                     Intent intent = new Intent();
-                    intent.putExtra("address",String.valueOf(result.getAddress()));
-                    intent.putExtra("idNumber",String.valueOf(result.getIdNumber()));
-                    intent.putExtra("birthday",String.valueOf(result.getBirthday()));
-                    intent.putExtra("gender",String.valueOf(result.getGender()));
-                    intent.putExtra("ethnic",String.valueOf(result.getEthnic()));
-                    intent.putExtra("name",String.valueOf(result.getName()));
-                    intent.putExtra(CameraActivity.KEY_CONTENT_TYPE, contentType);
+                    if (contentType == CONTENT_TYPE_ID_CARD_FRONT) {
+                        intent.putExtra("address", String.valueOf(result.getAddress()));
+                        intent.putExtra("idNumber", String.valueOf(result.getIdNumber()));
+                        intent.putExtra("birthday", String.valueOf(result.getBirthday()));
+                        intent.putExtra("gender", String.valueOf(result.getGender()));
+                        intent.putExtra("ethnic", String.valueOf(result.getEthnic()));
+                        intent.putExtra("name", String.valueOf(result.getName()));
+                        intent.putExtra(CameraActivity.KEY_CONTENT_TYPE, contentType);
+                    }else {
+                        intent.putExtra("signDate", String.valueOf(result.getAddress()));
+                        intent.putExtra("expiryDate", String.valueOf(result.getIdNumber()));
+                        intent.putExtra("issueAuthority", String.valueOf(result.getBirthday()));
+                    }
                     setResult(Activity.RESULT_OK, intent);
                     finish();
                 }
@@ -419,7 +427,7 @@ public class CameraActivity extends Activity {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                recIDCard(IDCardParams.ID_CARD_SIDE_FRONT,outputPath);
+                recIDCard(outputPath);
             }
         });
     }
