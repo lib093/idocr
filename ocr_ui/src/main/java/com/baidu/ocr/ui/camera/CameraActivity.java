@@ -323,14 +323,12 @@ public class CameraActivity extends Activity {
             public void onResult(IDCardResult result) {
                 if (result != null) {
                     Intent intent = new Intent();
-                    Map<String,String> res = new HashMap<>();
-                    res.put("address",String.valueOf(result.getAddress()));
-                    res.put("idNumber",String.valueOf(result.getIdNumber()));
-                    res.put("birthday",String.valueOf(result.getBirthday()));
-                    res.put("gender",String.valueOf(result.getGender()));
-                    res.put("ethnic",String.valueOf(result.getEthnic()));
-                    res.put("name",String.valueOf(result.getName()));
-                    intent.putExtra("result",res.toString());
+                    intent.putExtra("address",String.valueOf(result.getAddress()));
+                    intent.putExtra("idNumber",String.valueOf(result.getIdNumber()));
+                    intent.putExtra("birthday",String.valueOf(result.getBirthday()));
+                    intent.putExtra("gender",String.valueOf(result.getGender()));
+                    intent.putExtra("ethnic",String.valueOf(result.getEthnic()));
+                    intent.putExtra("name",String.valueOf(result.getName()));
                     intent.putExtra(CameraActivity.KEY_CONTENT_TYPE, contentType);
                     setResult(Activity.RESULT_OK, intent);
                     finish();
